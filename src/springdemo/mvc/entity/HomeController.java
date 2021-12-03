@@ -1,17 +1,20 @@
 package springdemo.mvc.entity;
 
 import org.hibernate.HibernateException;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import springdemo.mvc.entity.Customer;
+import springdemo.mvc.service.CustomerService;
 @Controller
 public class HomeController {
+	@Autowired
+	CustomerService customerService;
+	
 	@Transactional
 	@RequestMapping("/")
 	public String showMyPage() {
@@ -43,6 +46,8 @@ public class HomeController {
 		}
 		
 		factory.close();
+		
+		customerService.getCustomersService();
 		
 		return "list-customers";
 	}
