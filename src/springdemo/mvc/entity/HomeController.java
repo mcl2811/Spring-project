@@ -44,7 +44,7 @@ public class HomeController {
 		
 		factory.close();
 		
-		return "main-menu";
+		return "list-customers";
 	}
 
 }
