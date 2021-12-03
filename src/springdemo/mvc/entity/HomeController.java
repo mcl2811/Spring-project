@@ -1,5 +1,7 @@
 package springdemo.mvc.entity;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -7,6 +9,7 @@ import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import springdemo.mvc.service.CustomerService;
@@ -17,7 +20,7 @@ public class HomeController {
 	
 	@Transactional
 	@RequestMapping("/")
-	public String showMyPage() {
+	public String showMyPage(Model theModel) {
 		
 		// Esto hay que hacerlo en el DAO
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
@@ -47,7 +50,9 @@ public class HomeController {
 		
 		factory.close();
 		
-		customerService.getCustomersService();
+		List<Customer> customerList = customerService.getCustomersService();
+
+		theModel.addAttribute("customers", customerList);
 		
 		return "list-customers";
 	}

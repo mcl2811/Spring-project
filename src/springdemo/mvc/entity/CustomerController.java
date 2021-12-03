@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
-	@RequestMapping("/showForm")
+	@RequestMapping("/showFormForAdd")
 	public String showForm(Model theModel) {
 // create a new customer object to be added to the Model
 // so that the show form can make use of the customer object for data mapping
