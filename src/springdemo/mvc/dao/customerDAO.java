@@ -45,5 +45,28 @@ public class customerDAO {
 		}
 		return results;
 	}
+	
+	public String addCustomer(Customer customer) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Customer.class)
+				.buildSessionFactory();
+		// create a session
+		Session session = factory.getCurrentSession();
+		try
+		{
+		// read 
+			session.beginTransaction();
+				
+			session.save(customer);
+			
+			session.getTransaction().commit();
+			
+		} 
+		catch (HibernateException he){
+			he.printStackTrace();
+		} catch (NullPointerException nu){
+			nu.printStackTrace();
+		}
+		return "New customer added";
+	}
 
 }

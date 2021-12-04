@@ -17,4 +17,9 @@ public List<Customer> getCustomersService(){
 	List<Customer> listCustomers = customerDAO.getCustomerList();
 	return listCustomers;
 }
+
+public Customer addCustomer(Customer customer) {
+	customerDAO.addCustomer(customer);
+	return customer;
+}
 }

@@ -2,6 +2,7 @@ package springdemo.mvc.entity;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,9 +12,14 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import springdemo.mvc.service.CustomerService;
+
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
+	@Autowired
+	CustomerService customerService;
+	
 	@RequestMapping("/showFormForAdd")
 	public String showForm(Model theModel) {
 // create a new customer object to be added to the Model
@@ -24,11 +30,13 @@ public class CustomerController {
 	}
 
 	@RequestMapping("processForm")
-	public String processForm(@Valid @ModelAttribute("customer") Customer theCustomer, BindingResult bindingResult) {
+	public String processForm(@Valid @ModelAttribute("customer") Customer theCustomer, BindingResult bindingResult, Model theModel) {
 		
 		if (bindingResult.hasErrors())
 			return "customer-form";
 		else
+			customerService.addCustomer(theCustomer);
+			theModel.addAttribute("customer", theCustomer);
 			return "customer-confirmation";
 	}
 	

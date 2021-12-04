@@ -30,7 +30,7 @@
 			<!-- put new button: Add Customer -->
 		
 			<input type="button" value="Add Customer"
-				   onclick="window.location.href='SshowFormForAdd'; return false;"
+				   onclick="window.location.href='customer/showFormForAdd'; return false;"
 				   class="add-button"
 			/>
 		
