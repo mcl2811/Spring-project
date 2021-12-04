@@ -56,7 +56,7 @@ public class customerDAO {
 		// read 
 			session.beginTransaction();
 				
-			session.save(customer);
+			session.saveOrUpdate(customer);
 			
 			session.getTransaction().commit();
 			
@@ -68,5 +68,79 @@ public class customerDAO {
 		}
 		return "New customer added";
 	}
-
+	
+	public String deleteCustomer(int id) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Customer.class)
+				.buildSessionFactory();
+		// create a session
+		Session session = factory.getCurrentSession();
+		try
+		{
+		// read
+			session.beginTransaction();
+				
+			int customerID = id;
+			Customer myCustomer = session.get(Customer.class, customerID);
+			session.delete(myCustomer);
+			
+			session.getTransaction().commit();
+			
+		} 
+		catch (HibernateException he){
+			he.printStackTrace();
+		} catch (NullPointerException nu){
+			nu.printStackTrace();
+		}
+		return "Customer deleted";
+	}
+	
+	public String updateCustomer(int id) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Customer.class)
+				.buildSessionFactory();
+		// create a session
+		Session session = factory.getCurrentSession();
+		try
+		{
+		// read 
+			session.beginTransaction();
+			int customerID = id;	
+			Customer myCustomer = session.get(Customer.class, customerID);
+			session.update(myCustomer);
+			
+			session.getTransaction().commit();
+			
+		} 
+		catch (HibernateException he){
+			he.printStackTrace();
+		} catch (NullPointerException nu){
+			nu.printStackTrace();
+		}
+		return "Customer updated";
+	}
+	
+	public Customer getCustomer(int id) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Customer.class)
+				.buildSessionFactory();
+		// create a session
+		Session session = factory.getCurrentSession();
+		Customer customer = new Customer();
+		try
+		{
+		// read 
+			session.beginTransaction();
+				
+			// customer = (Customer)session.createQuery("from Customer where id = '" + id + "'").getResultList().get(0);
+			customer = session.get(Customer.class, id);
+			
+			session.getTransaction().commit();
+			
+		} 
+		catch (HibernateException he){
+			he.printStackTrace();
+		} catch (NullPointerException nu){
+			nu.printStackTrace();
+		}
+		return customer;
+	}
+	
 }

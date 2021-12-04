@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Registration Form</title>
+	<title>Customer update Form</title>
 	<style> <%-- inline css --%>
 		.error {color:red}
 	</style>
@@ -13,12 +13,9 @@
 <body>
 	<i> Fill out the form. </i>
 	<br> <br>
-	<form:form action="processForm" modelAttribute="customer">
-		<form:hidden path="id" />
-		
+	<form:form action="updateForm" modelAttribute="customer">
 		First Name: <form:input path="firstName" />
 		<form:errors path="firstName" cssClass="error" />
-		
 		<br> <br>
 		Last name: <form:input path="lastName" />
 		<form:errors path="lastName" cssClass="error" />

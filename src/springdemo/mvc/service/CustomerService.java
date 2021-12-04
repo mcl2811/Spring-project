@@ -22,4 +22,18 @@ public Customer addCustomer(Customer customer) {
 	customerDAO.addCustomer(customer);
 	return customer;
 }
+
+public int deleteCustomer(int id) {
+	customerDAO.deleteCustomer(id);
+	return id;
+}
+
+public int updateCustomer(int id) {
+	customerDAO.updateCustomer(id);
+	return id;
+}
+
+public Customer getCustomer(int id) {
+	return customerDAO.getCustomer(id);
+}
 }
