@@ -12,14 +12,42 @@
 	<link type="text/css"
 		  rel="stylesheet"
 		  href="${pageContext.request.contextPath}/resources/css/style.css" />
+<style>
+table, th, td {
+  background-color: #f0f0f0;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #009dfa;
+  border-style: solid;
+  color: #000000;
+}
 
+.button {
+	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:6px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Verdana;
+	font-size:13px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+}
+.center {
+  text-align: center;
+}
+</style>
 </head>
 
 <body>
-
 	<div id="wrapper">
-		<div id="header">
-			<h2>CRM - Customer Relationship Manager</h2>
+		<div class="center" id="header">
+			<h2> <font face = "Verdana" size = "2">  CRM - Customer Relationship Manager</h2>
 		</div>
 	</div>
 	
@@ -31,12 +59,14 @@
 		
 			<input type="button" value="Add Customer"
 				   onclick="window.location.href='customer/showFormForAdd'; return false;"
-				   class="add-button"
+				   class="button add-button"
 			/>
+			<br> <br>
 		
 			<!--  add our html table here -->
 		
-			<table>
+			<table border="1" width="100%">
+
 				<tr>
 					<th>First Name</th>
 					<th>Last Name</th>
@@ -62,7 +92,7 @@
 						<td> ${tempCustomer.lastName} </td>
 						<td> ${tempCustomer.email} </td>
 						
-						<td>
+						<td class="center">
 							<!-- display the update link -->
 							<a href="${updateLink}">Update</a>
 							|
